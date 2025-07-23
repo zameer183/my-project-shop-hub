@@ -1,0 +1,2149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlobalMart - Your Global Shopping Paradise</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.5;
+        color: #1a1a1a;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* Top Bar */
+      .top-bar {
+        background: #0f172a;
+        color: white;
+        padding: 0.5rem 0;
+        font-size: 0.875rem;
+      }
+
+      .top-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .top-bar-left {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .top-bar-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .social-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: transform 0.2s;
+      }
+
+      .social-links a:hover {
+        transform: scale(1.1);
+      }
+
+      /* Main Header */
+      .main-header {
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        gap: 2rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .logo-icon {
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-text h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .logo-text p {
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+
+      /* Search Bar */
+      .search-container {
+        flex: 1;
+        max-width: 32rem;
+      }
+
+      .search-form {
+        position: relative;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 0.75rem 3rem 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 0.25rem;
+        top: 0.25rem;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search-btn:hover {
+        background: #2563eb;
+      }
+
+      /* Header Actions */
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-trigger {
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        transition: background-color 0.2s;
+      }
+
+      .dropdown-trigger:hover {
+        background: #f3f4f6;
+      }
+
+      .dropdown-content {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        min-width: 12rem;
+        z-index: 50;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s;
+      }
+
+      .dropdown.active .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: #374151;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+
+      .dropdown-item:hover {
+        background: #f3f4f6;
+      }
+
+      .cart-btn {
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        transition: background-color 0.2s;
+        position: relative;
+      }
+
+      .cart-btn:hover {
+        background: #f3f4f6;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -0.25rem;
+        right: 0.25rem;
+        background: #ef4444;
+        color: white;
+        font-size: 0.75rem;
+        padding: 0.125rem 0.375rem;
+        border-radius: 50%;
+        min-width: 1.25rem;
+        height: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #2563eb, #9333ea, #ec4899);
+        color: white;
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .hero-text p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .hero-features {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        font-size: 0.875rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: white;
+        color: #2563eb;
+      }
+
+      .btn-primary:hover {
+        background: #f3f4f6;
+      }
+
+      .btn-outline {
+        background: none;
+        color: white;
+        border: 1px solid white;
+      }
+
+      .btn-outline:hover {
+        background: white;
+        color: #2563eb;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .stat-card .flag {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-card .number {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .stat-card .label {
+        font-size: 0.875rem;
+        opacity: 0.8;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 0;
+        background: #f8fafc;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .section-header p {
+        font-size: 1.125rem;
+        color: #6b7280;
+        max-width: 32rem;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        transition: transform 0.3s;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1);
+      }
+
+      .feature-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .feature-card p {
+        color: #6b7280;
+        line-height: 1.6;
+      }
+
+      /* Flash Sale Section */
+      .flash-sale {
+        padding: 4rem 0;
+      }
+
+      .flash-sale-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .flash-sale-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .flash-sale-icon {
+        background: linear-gradient(135deg, #ef4444, #f97316);
+        color: white;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .flash-sale-text h2 {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .flash-sale-text p {
+        color: #6b7280;
+      }
+
+      .flash-badge {
+        background: #ef4444;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      /* Product Card */
+      .product-card {
+        background: white;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.05);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        background: #ef4444;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .product-actions {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        opacity: 0;
+        transform: translateX(1rem);
+        transition: all 0.3s;
+      }
+
+      .product-card:hover .product-actions {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .action-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #e5e7eb;
+        border-radius: 0.375rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background: white;
+        transform: scale(1.1);
+      }
+
+      .product-info {
+        padding: 1rem;
+      }
+
+      .product-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .stars {
+        display: flex;
+        gap: 0.125rem;
+      }
+
+      .star {
+        width: 0.875rem;
+        height: 0.875rem;
+        color: #fbbf24;
+      }
+
+      .star.empty {
+        color: #d1d5db;
+      }
+
+      .rating-text {
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .current-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2563eb;
+      }
+
+      .original-price {
+        font-size: 0.875rem;
+        color: #6b7280;
+        text-decoration: line-through;
+      }
+
+      .product-seller {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .add-to-cart {
+        width: 100%;
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .add-to-cart:hover {
+        background: #1d4ed8;
+      }
+
+      /* Categories Section */
+      .categories {
+        padding: 4rem 0;
+        background: #f8fafc;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .category-card {
+        background: white;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .category-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .category-header {
+        height: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .category-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          var(--category-color-1),
+          var(--category-color-2)
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .category-card:hover .category-header::before {
+        opacity: 0.1;
+      }
+
+      .category-info {
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .category-info h3 {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        transition: color 0.3s;
+      }
+
+      .category-card:hover .category-info h3 {
+        color: #2563eb;
+      }
+
+      .category-info p {
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+
+      /* Newsletter Section */
+      .newsletter {
+        background: linear-gradient(135deg, #2563eb, #9333ea, #ec4899);
+        color: white;
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .newsletter::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .newsletter-content {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .newsletter-text h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-text p {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .newsletter-form {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        backdrop-filter: blur(10px);
+      }
+
+      .newsletter-input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .newsletter-features {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.875rem;
+      }
+
+      .newsletter-app {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .newsletter-app h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-app p {
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+      }
+
+      .app-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      /* Footer */
+      .footer {
+        background: #0f172a;
+        color: white;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-brand-icon {
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer-brand-text h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .footer-brand-text p {
+        font-size: 0.875rem;
+        color: #9ca3af;
+      }
+
+      .footer-description {
+        color: #d1d5db;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .footer-section h4 {
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        color: #d1d5db;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #374151;
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: #9ca3af;
+      }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .footer-bottom-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-bottom-links a:hover {
+        color: white;
+      }
+
+      /* Chat Widget */
+      .chat-widget {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 100;
+      }
+
+      .chat-toggle {
+        width: 3.5rem;
+        height: 3.5rem;
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s;
+      }
+
+      .chat-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .chat-notification {
+        position: absolute;
+        top: -0.5rem;
+        right: -0.5rem;
+        width: 1rem;
+        height: 1rem;
+        background: #ef4444;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .top-bar-content {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .top-bar-left {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-content,
+        .newsletter-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-text h1 {
+          font-size: 2.5rem;
+        }
+
+        .features-grid,
+        .products-grid,
+        .categories-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .flash-sale-header {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+        }
+      }
+
+      /* Utility Classes */
+      .hidden {
+        display: none;
+      }
+      .flex {
+        display: flex;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .gap-2 {
+        gap: 0.5rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .text-blue-600 {
+        color: #2563eb;
+      }
+      .bg-red-500 {
+        background-color: #ef4444;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-bar-content">
+          <div class="top-bar-left">
+            <span>📞 24/7 Customer Support: +1-800-SHOP-NOW</span>
+            <span>🚚 Free shipping on orders over $50</span>
+          </div>
+          <div class="top-bar-right">
+            <span>Follow us:</span>
+            <div class="social-links">
+              <a href="#">📘</a>
+              <a href="#">🐦</a>
+              <a href="#">📷</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo -->
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"
+                />
+                <path d="M12 22V12" />
+                <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
+                <path d="m7.5 4.27 9 5.15" />
+              </svg>
+            </div>
+            <div class="logo-text">
+              <h1>GlobalMart</h1>
+              <p>Shop Worldwide</p>
+            </div>
+          </a>
+
+          <!-- Search Bar -->
+          <div class="search-container">
+            <form class="search-form" onsubmit="handleSearch(event)">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Search products..."
+                id="searchInput"
+              />
+              <button type="submit" class="search-btn">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Language Dropdown -->
+            <div class="dropdown" id="languageDropdown">
+              <button
+                class="dropdown-trigger"
+                onclick="toggleDropdown('languageDropdown')"
+              >
+                🌐 <span id="currentLanguage">EN</span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6,9 12,15 18,9" />
+                </svg>
+              </button>
+              <div class="dropdown-content">
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeLanguage('EN', '🇺🇸')"
+                  >🇺🇸 English</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeLanguage('ES', '🇪🇸')"
+                  >🇪🇸 Español</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeLanguage('FR', '🇫🇷')"
+                  >🇫🇷 Français</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeLanguage('AR', '🇸🇦')"
+                  >🇸🇦 العربية</a
+                >
+              </div>
+            </div>
+
+            <!-- Currency Dropdown -->
+            <div class="dropdown" id="currencyDropdown">
+              <button
+                class="dropdown-trigger"
+                onclick="toggleDropdown('currencyDropdown')"
+              >
+                <span id="currentCurrency">$</span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6,9 12,15 18,9" />
+                </svg>
+              </button>
+              <div class="dropdown-content">
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeCurrency('$', 'USD')"
+                  >$ USD</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeCurrency('€', 'EUR')"
+                  >€ EUR</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeCurrency('£', 'GBP')"
+                  >£ GBP</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  onclick="changeCurrency('₨', 'PKR')"
+                  >₨ PKR</a
+                >
+              </div>
+            </div>
+
+            <!-- Account Dropdown -->
+            <div class="dropdown" id="accountDropdown">
+              <button
+                class="dropdown-trigger"
+                onclick="toggleDropdown('accountDropdown')"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                Account
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6,9 12,15 18,9" />
+                </svg>
+              </button>
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item">Sign In</a>
+                <a href="#" class="dropdown-item">Create Account</a>
+                <a href="#" class="dropdown-item">Become a Seller</a>
+              </div>
+            </div>
+
+            <!-- Wishlist -->
+            <button class="cart-btn" onclick="toggleWishlist()">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                />
+              </svg>
+              <span class="cart-badge" id="wishlistCount">0</span>
+            </button>
+
+            <!-- Cart -->
+            <button class="cart-btn" onclick="toggleCart()">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="8" cy="21" r="1" />
+                <circle cx="19" cy="21" r="1" />
+                <path
+                  d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                />
+              </svg>
+              <span id="cartTotal">$0</span>
+              <span class="cart-badge" id="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Global Shopping Made Easy</h1>
+            <p>Discover millions of products from sellers worldwide</p>
+
+            <div class="hero-features">
+              <div class="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                  />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Delivering to United States</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                <span>200+ Countries</span>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#" class="btn btn-primary">
+                Start Shopping
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="9,18 15,12 9,6" />
+                </svg>
+              </a>
+              <a href="#" class="btn btn-outline">
+                Become a Seller
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="flag">🇺🇸</div>
+              <div class="number">500K+</div>
+              <div class="label">USA</div>
+            </div>
+            <div class="stat-card">
+              <div class="flag">🇨🇳</div>
+              <div class="number">800K+</div>
+              <div class="label">China</div>
+            </div>
+            <div class="stat-card">
+              <div class="flag">🇩🇪</div>
+              <div class="number">200K+</div>
+              <div class="label">Germany</div>
+            </div>
+            <div class="stat-card">
+              <div class="flag">🇬🇧</div>
+              <div class="number">150K+</div>
+              <div class="label">UK</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Shop Globally with Us?</h2>
+          <p>
+            Experience the world of shopping with unmatched convenience and
+            security
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Global Reach</h3>
+            <p>
+              Shop from sellers in 200+ countries with access to unique products
+              you won't find anywhere else
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Buyer Protection</h3>
+            <p>
+              100% secure transactions with money-back guarantee and dispute
+              resolution support
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <h3>Worldwide Shipping</h3>
+            <p>
+              Fast and reliable delivery to your doorstep with real-time
+              tracking and insurance
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎧</div>
+            <h3>24/7 Support</h3>
+            <p>
+              Multilingual customer service available around the clock to help
+              with any questions
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flash Sale Section -->
+    <section class="flash-sale">
+      <div class="container">
+        <div class="flash-sale-header">
+          <div class="flash-sale-title">
+            <div class="flash-sale-icon">⚡</div>
+            <div class="flash-sale-text">
+              <h2>Flash Sale</h2>
+              <p>Limited time offers from global sellers</p>
+            </div>
+            <div class="flash-badge">⏰ Ends in 24h</div>
+          </div>
+          <a
+            href="#"
+            class="btn btn-outline"
+            style="color: #374151; border-color: #374151"
+          >
+            View All Deals
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9,18 15,12 9,6" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="products-grid" id="flashSaleProducts">
+          <!-- Products will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+      <div class="container">
+        <div class="section-header">
+          <h2>Shop by Category</h2>
+          <p>Discover millions of products across all categories</p>
+        </div>
+
+        <div class="categories-grid">
+          <a
+            href="#"
+            class="category-card"
+            style="--category-color-1: #3b82f6; --category-color-2: #2563eb"
+          >
+            <div class="category-header">📱</div>
+            <div class="category-info">
+              <h3>Electronics</h3>
+              <p>50k+ items</p>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="category-card"
+            style="--category-color-1: #ec4899; --category-color-2: #be185d"
+          >
+            <div class="category-header">👕</div>
+            <div class="category-info">
+              <h3>Fashion</h3>
+              <p>30k+ items</p>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="category-card"
+            style="--category-color-1: #10b981; --category-color-2: #059669"
+          >
+            <div class="category-header">🏠</div>
+            <div class="category-info">
+              <h3>Home & Living</h3>
+              <p>25k+ items</p>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="category-card"
+            style="--category-color-1: #f59e0b; --category-color-2: #d97706"
+          >
+            <div class="category-header">⚽</div>
+            <div class="category-info">
+              <h3>Sports</h3>
+              <p>15k+ items</p>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="category-card"
+            style="--category-color-1: #8b5cf6; --category-color-2: #7c3aed"
+          >
+            <div class="category-header">💄</div>
+            <div class="category-info">
+              <h3>Beauty</h3>
+              <p>20k+ items</p>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="category-card"
+            style="--category-color-1: #ef4444; --category-color-2: #dc2626"
+          >
+            <div class="category-header">🚗</div>
+            <div class="category-info">
+              <h3>Automotive</h3>
+              <p>10k+ items</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+      <div class="container">
+        <div class="newsletter-content">
+          <div class="newsletter-text">
+            <div class="flex items-center gap-3" style="margin-bottom: 1.5rem">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+              <div>
+                <h2>Stay Connected Globally</h2>
+                <p style="margin: 0; opacity: 0.8">
+                  Get updates in your preferred language
+                </p>
+              </div>
+            </div>
+
+            <p>
+              Subscribe to receive personalized deals, new seller alerts, and
+              exclusive offers from around the world.
+            </p>
+
+            <div class="newsletter-form">
+              <input
+                type="email"
+                class="newsletter-input"
+                placeholder="Enter your email"
+              />
+              <button class="btn btn-primary">Subscribe</button>
+            </div>
+
+            <div class="newsletter-features">
+              <div class="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22,4 12,14.01 9,11.01" />
+                </svg>
+                <span>Multilingual support</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22,4 12,14.01 9,11.01" />
+                </svg>
+                <span>No spam guarantee</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="newsletter-app">
+            <h3>Download Our App</h3>
+            <p>Shop on the go with our mobile app</p>
+            <div class="app-buttons">
+              <button class="btn btn-outline">📱 App Store</button>
+              <button class="btn btn-outline">📱 Google Play</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-brand">
+              <div class="footer-brand-icon">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"
+                  />
+                </svg>
+              </div>
+              <div class="footer-brand-text">
+                <h3>GlobalMart</h3>
+                <p>Your Global Shopping Paradise</p>
+              </div>
+            </div>
+            <p class="footer-description">
+              Connect with millions of buyers and sellers worldwide. Discover
+              unique products, competitive prices, and exceptional service
+              across 200+ countries.
+            </p>
+            <div class="flex items-center gap-4" style="font-size: 0.875rem">
+              <div class="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                <span>200+ Countries</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 12l2 2 4-4" />
+                  <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                  <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                </svg>
+                <span>Secure Payments</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4>Company</h4>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Investor Relations</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Customer Service</h4>
+            <ul class="footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Shipping Info</a></li>
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Dispute Resolution</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Selling</h4>
+            <ul class="footer-links">
+              <li><a href="#">Become a Seller</a></li>
+              <li><a href="#">Seller Guide</a></li>
+              <li><a href="#">Fees & Pricing</a></li>
+              <li><a href="#">Seller Protection</a></li>
+              <li><a href="#">Affiliate Program</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 GlobalMart. All rights reserved worldwide.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">GDPR</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+      <button class="chat-toggle" onclick="openChat()">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+      </button>
+      <div class="chat-notification"></div>
+    </div>
+
+    <script>
+      // Global Variables
+      let cart = [];
+      let wishlist = [];
+      let currentCurrency = "USD";
+      let currentLanguage = "EN";
+
+      // Mock Products Data
+      const products = [
+        {
+          id: 1,
+          name: "iPhone 15 Pro Max",
+          price: 1199,
+          originalPrice: 1299,
+          currency: "USD",
+          image:
+            "../images/id no 1.jpeg",
+          rating: 4.8,
+          reviews: 1247,
+          seller: "TechWorld Store",
+          location: "United States",
+          category: "Electronics",
+          isFlashSale: true,
+        },
+        {
+          id: 2,
+          name: "Samsung Galaxy S24",
+          price: 899,
+          originalPrice: 999,
+          currency: "USD",
+          image:
+            "../images/id no 2.jpeg",
+          rating: 4.7,
+          reviews: 892,
+          seller: "Samsung Official",
+          location: "South Korea",
+          category: "Electronics",
+          isFlashSale: true,
+        },
+        {
+          id: 3,
+          name: "MacBook Air M3",
+          price: 1299,
+          originalPrice: 1399,
+          currency: "USD",
+          image:
+            "../images/id no 3.jpeg",
+          rating: 4.9,
+          reviews: 567,
+          seller: "Apple Store",
+          location: "United States",
+          category: "Electronics",
+          isFlashSale: true,
+        },
+        {
+          id: 4,
+          name: "Sony WH-1000XM5",
+          price: 349,
+          originalPrice: 399,
+          currency: "USD",
+          image:
+            "../images/id no 4.jpeg",
+          rating: 4.6,
+          reviews: 324,
+          seller: "Audio Excellence",
+          location: "Japan",
+          category: "Electronics",
+          isFlashSale: true,
+        },
+      ];
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        loadFlashSaleProducts();
+        updateCartUI();
+        updateWishlistUI();
+      });
+
+      // Search functionality
+      function handleSearch(event) {
+        event.preventDefault();
+        const query = document.getElementById("searchInput").value;
+        if (query.trim()) {
+          alert(`Searching for: ${query}`);
+          // In a real app, this would navigate to search results
+        }
+      }
+
+      // Dropdown functionality
+      function toggleDropdown(dropdownId) {
+        const dropdown = document.getElementById(dropdownId);
+        const isActive = dropdown.classList.contains("active");
+
+        // Close all dropdowns
+        document
+          .querySelectorAll(".dropdown")
+          .forEach((d) => d.classList.remove("active"));
+
+        // Toggle current dropdown
+        if (!isActive) {
+          dropdown.classList.add("active");
+        }
+      }
+
+      // Close dropdowns when clicking outside
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".dropdown")) {
+          document
+            .querySelectorAll(".dropdown")
+            .forEach((d) => d.classList.remove("active"));
+        }
+      });
+
+      // Language switching
+      function changeLanguage(lang, flag) {
+        currentLanguage = lang;
+        document.getElementById("currentLanguage").textContent = lang;
+        toggleDropdown("languageDropdown");
+
+        // In a real app, this would trigger translation
+        console.log(`Language changed to: ${lang}`);
+      }
+
+      // Currency switching
+      function changeCurrency(symbol, code) {
+        currentCurrency = code;
+        document.getElementById("currentCurrency").textContent = symbol;
+        toggleDropdown("currencyDropdown");
+
+        // Update all prices on the page
+        updatePricesDisplay();
+        console.log(`Currency changed to: ${code}`);
+      }
+
+      // Load flash sale products
+      function loadFlashSaleProducts() {
+        const container = document.getElementById("flashSaleProducts");
+        container.innerHTML = "";
+
+        products.forEach((product) => {
+          const discount = Math.round(
+            ((product.originalPrice - product.price) / product.originalPrice) *
+              100,
+          );
+          const productHTML = `
+                    <div class="product-card" data-product-id="${product.id}">
+                        <div class="product-image-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                            <div class="product-badge">-${discount}%</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="toggleWishlistItem(${product.id})" title="Add to Wishlist">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                </button>
+                                <button class="action-btn" onclick="viewProduct(${product.id})" title="Quick View">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    ${generateStars(product.rating)}
+                                </div>
+                                <span class="rating-text">${product.rating} (${product.reviews})</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$${product.price}</span>
+                                <span class="original-price">$${product.originalPrice}</span>
+                            </div>
+                            <div class="product-seller">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <span>${product.location}</span>
+                                <span>•</span>
+                                <span>${product.seller}</span>
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="8" cy="21" r="1"/>
+                                    <circle cx="19" cy="21" r="1"/>
+                                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                </svg>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+          container.innerHTML += productHTML;
+        });
+      }
+
+      // Generate star rating HTML
+      function generateStars(rating) {
+        let starsHTML = "";
+        for (let i = 1; i <= 5; i++) {
+          if (i <= rating) {
+            starsHTML +=
+              '<svg class="star" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>';
+          } else {
+            starsHTML +=
+              '<svg class="star empty" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>';
+          }
+        }
+        return starsHTML;
+      }
+
+      // Cart functionality
+      function addToCart(productId) {
+        const product = products.find((p) => p.id === productId);
+        if (product) {
+          const existingItem = cart.find((item) => item.id === productId);
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+              quantity: 1,
+            });
+          }
+          updateCartUI();
+          showNotification(`${product.name} added to cart!`);
+        }
+      }
+
+      function updateCartUI() {
+        const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartTotal = cart.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0,
+        );
+
+        document.getElementById("cartCount").textContent = cartCount;
+        document.getElementById("cartTotal").textContent =
+          `$${cartTotal.toFixed(2)}`;
+      }
+
+      // Wishlist functionality
+      function toggleWishlistItem(productId) {
+        const product = products.find((p) => p.id === productId);
+        if (product) {
+          const existingIndex = wishlist.findIndex(
+            (item) => item.id === productId,
+          );
+          if (existingIndex > -1) {
+            wishlist.splice(existingIndex, 1);
+            showNotification(`${product.name} removed from wishlist!`);
+          } else {
+            wishlist.push({
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+            });
+            showNotification(`${product.name} added to wishlist!`);
+          }
+          updateWishlistUI();
+        }
+      }
+
+      function updateWishlistUI() {
+        document.getElementById("wishlistCount").textContent = wishlist.length;
+      }
+
+      // View product details
+      function viewProduct(productId) {
+        const product = products.find((p) => p.id === productId);
+        if (product) {
+          alert(
+            `Viewing ${product.name}\nPrice: $${product.price}\nRating: ${product.rating}/5\nSeller: ${product.seller}`,
+          );
+          // In a real app, this would navigate to product detail page
+        }
+      }
+
+      // Toggle cart sidebar
+      function toggleCart() {
+        alert(
+          `Cart Items: ${cart.length}\nTotal: $${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`,
+        );
+        // In a real app, this would open a cart sidebar
+      }
+
+      // Toggle wishlist sidebar
+      function toggleWishlist() {
+        alert(`Wishlist Items: ${wishlist.length}`);
+        // In a real app, this would open a wishlist sidebar
+      }
+
+      // Update price display when currency changes
+      function updatePricesDisplay() {
+        // In a real app, this would convert all prices to the new currency
+        console.log(`Updating all prices to ${currentCurrency}`);
+      }
+
+      // Chat functionality
+      function openChat() {
+        alert(
+          "Chat support is available 24/7!\n\nConnecting you with our multilingual support team...",
+        );
+        // In a real app, this would open the chat widget
+      }
+
+      // Notification system
+      function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+        notification.textContent = message;
+
+        // Add slide-in animation
+        const style = document.createElement("style");
+        style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+        document.head.appendChild(style);
+
+        document.body.appendChild(notification);
+
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+          notification.style.animation = "slideIn 0.3s ease-out reverse";
+          setTimeout(() => {
+            document.body.removeChild(notification);
+            document.head.removeChild(style);
+          }, 300);
+        }, 3000);
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add loading animation for images
+      document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll(".product-image");
+        images.forEach((img) => {
+          img.addEventListener("load", function () {
+            this.style.opacity = "1";
+          });
+          img.style.opacity = "0";
+          img.style.transition = "opacity 0.3s ease";
+        });
+      });
+    </script>
+  </body>
+</html>
