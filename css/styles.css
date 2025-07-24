@@ -115,6 +115,7 @@ body {
 .search-form {
     position: relative;
     z-index: 1005;
+    max-width: 350px;
 }
 
 .search-dropdown {
