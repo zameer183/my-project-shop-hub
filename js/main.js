@@ -608,23 +608,32 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeLanguageSelector();
     initializeCurrencySelector();
 
-    // Add smooth scrolling
+    // Add smooth scrolling for valid anchor links only
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const href = this.getAttribute('href');
 
-            // Skip if href is just '#' or empty
+            // Skip if href is just '#' or empty or invalid
             if (!href || href === '#' || href.length <= 1) {
-                return;
+                e.preventDefault();
+                return false;
             }
 
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            // Only process links that start with # and have valid selectors
+            try {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            } catch (error) {
+                // Invalid selector, just prevent default behavior
+                console.warn('Invalid selector:', href);
+                e.preventDefault();
+                return false;
             }
         });
     });
