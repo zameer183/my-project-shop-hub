@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - GlobalMart</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+        <div class="text-center">
+            <div class="card shadow-lg border-0 rounded-3" style="max-width: 400px;">
+                <div class="card-body p-5">
+                    <div class="mb-4">
+                        <div class="logo-icon bg-gradient mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-bag-check text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark">GlobalMart</h2>
+                        <p class="text-muted">Your Global Shopping Paradise</p>
+                    </div>
+                    
+                    <div id="logout-process">
+                        <div class="mb-4">
+                            <div class="spinner-border text-primary mb-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <h4 class="text-primary">Signing out...</h4>
+                            <p class="text-muted">Please wait while we securely log you out.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="logout-complete" class="d-none">
+                        <div class="mb-4">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+                            <h4 class="text-success mt-3">Logged out successfully!</h4>
+                            <p class="text-muted">Thank you for shopping with GlobalMart.</p>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="index.html" class="btn btn-primary">
+                                <i class="bi bi-house me-2"></i>Go to Homepage
+                            </a>
+                            <a href="login.html" class="btn btn-outline-primary">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In Again
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="#" class="text-muted text-decoration-none small">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+                    <a href="#" class="text-muted text-decoration-none small">Support</a>
+                </div>
+                <p class="text-muted small mt-2">&copy; 2024 GlobalMart. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Perform logout process
+        setTimeout(function() {
+            // Clear login state
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('cart');
+            localStorage.removeItem('wishlist');
+            
+            // Show completion message
+            document.getElementById('logout-process').classList.add('d-none');
+            document.getElementById('logout-complete').classList.remove('d-none');
+        }, 2000);
+    </script>
+</body>
+</html>
