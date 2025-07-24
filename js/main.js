@@ -17,7 +17,7 @@ const SAMPLE_PRODUCTS = [
         name: "iPhone 15 Pro Max",
         price: 1199,
         originalPrice: 1299,
-        image: "images/iphone 15.avif",
+        image: "spark-forge/images/iphone 15.avif",
         rating: 4.8,
         reviews: 1250,
         discount: 8,
@@ -29,7 +29,7 @@ const SAMPLE_PRODUCTS = [
         name: "Sony WH-1000XM5 Headphones",
         price: 349,
         originalPrice: 399,
-        image: "images/Headphones.avif",
+        image: "spark-forge/images/Headphones.avif",
         rating: 4.9,
         reviews: 892,
         discount: 13,
@@ -41,7 +41,7 @@ const SAMPLE_PRODUCTS = [
         name: "MacBook Pro 16-inch",
         price: 2199,
         originalPrice: 2499,
-        image: "images/absolute.avif",
+        image: "spark-forge/images/absolute.avif",
         rating: 4.7,
         reviews: 567,
         discount: 12,
@@ -53,7 +53,7 @@ const SAMPLE_PRODUCTS = [
         name: "Designer Fashion Collection",
         price: 89,
         originalPrice: 129,
-        image: "images/15.avif",
+        image: "spark-forge/images/15.avif",
         rating: 4.6,
         reviews: 342,
         discount: 31,
@@ -65,7 +65,7 @@ const SAMPLE_PRODUCTS = [
         name: "Home Essentials Bundle",
         price: 159,
         originalPrice: 199,
-        image: "images/Essentials.avif",
+        image: "spark-forge/images/Essentials.avif",
         rating: 4.5,
         reviews: 445,
         discount: 20,
@@ -77,7 +77,7 @@ const SAMPLE_PRODUCTS = [
         name: "Gaming Setup Complete",
         price: 899,
         originalPrice: 1199,
-        image: "images/Gaming.avif",
+        image: "spark-forge/images/Gaming.avif",
         rating: 4.8,
         reviews: 678,
         discount: 25,
@@ -89,7 +89,7 @@ const SAMPLE_PRODUCTS = [
         name: "Travel Luggage Set",
         price: 229,
         originalPrice: 299,
-        image: "images/Travele.avif",
+        image: "spark-forge/images/Travele.avif",
         rating: 4.4,
         reviews: 234,
         discount: 23,
@@ -101,7 +101,7 @@ const SAMPLE_PRODUCTS = [
         name: "Luxury Jewelry Collection",
         price: 549,
         originalPrice: 699,
-        image: "images/jewelry.avif",
+        image: "spark-forge/images/jewelry.avif",
         rating: 4.9,
         reviews: 156,
         discount: 21,
@@ -118,7 +118,7 @@ function formatPrice(price, currency = 'USD') {
         'GBP': '£',
         'PKR': '₨'
     };
-    
+
     return `${symbols[currency] || '$'}${price.toLocaleString()}`;
 }
 
@@ -141,7 +141,7 @@ function debounce(func, wait) {
 // Product card generation
 function createProductCard(product) {
     const discount = calculateDiscount(product.originalPrice, product.price);
-    
+
     return `
         <div class="col">
             <div class="card product-card h-100">
@@ -185,9 +185,9 @@ function createProductCard(product) {
 function addToCart(productId) {
     const product = SAMPLE_PRODUCTS.find(p => p.id === productId);
     if (!product) return;
-    
+
     const existingItem = AppState.cart.find(item => item.id === productId);
-    
+
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -196,7 +196,7 @@ function addToCart(productId) {
             quantity: 1
         });
     }
-    
+
     updateCartUI();
     showNotification(`${product.name} added to cart!`, 'success');
 }
@@ -221,15 +221,15 @@ function updateCartQuantity(productId, quantity) {
 function updateCartUI() {
     const cartBadge = document.querySelector('.position-relative .badge');
     const cartTotal = document.querySelector('.ms-2.d-none.d-lg-inline');
-    
+
     const itemCount = AppState.cart.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = AppState.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
+
     if (cartBadge) {
         cartBadge.textContent = itemCount;
         cartBadge.style.display = itemCount > 0 ? 'flex' : 'none';
     }
-    
+
     if (cartTotal) {
         cartTotal.textContent = formatPrice(totalPrice, AppState.currency);
     }
@@ -239,9 +239,9 @@ function updateCartUI() {
 function toggleWishlist(productId) {
     const product = SAMPLE_PRODUCTS.find(p => p.id === productId);
     if (!product) return;
-    
+
     const existingIndex = AppState.wishlist.findIndex(item => item.id === productId);
-    
+
     if (existingIndex >= 0) {
         AppState.wishlist.splice(existingIndex, 1);
         showNotification(`${product.name} removed from wishlist`, 'info');
@@ -249,13 +249,13 @@ function toggleWishlist(productId) {
         AppState.wishlist.push(product);
         showNotification(`${product.name} added to wishlist!`, 'success');
     }
-    
+
     updateWishlistUI();
 }
 
 function updateWishlistUI() {
     const wishlistBadge = document.querySelector('a[href="/wishlist"] .badge');
-    
+
     if (wishlistBadge) {
         wishlistBadge.textContent = AppState.wishlist.length;
         wishlistBadge.style.display = AppState.wishlist.length > 0 ? 'flex' : 'none';
@@ -266,7 +266,7 @@ function updateWishlistUI() {
 function quickView(productId) {
     const product = SAMPLE_PRODUCTS.find(p => p.id === productId);
     if (!product) return;
-    
+
     // Create and show modal
     const modalHtml = `
         <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
@@ -313,20 +313,20 @@ function quickView(productId) {
             </div>
         </div>
     `;
-    
+
     // Remove existing modal if any
     const existingModal = document.getElementById('quickViewModal');
     if (existingModal) {
         existingModal.remove();
     }
-    
+
     // Add new modal to body
     document.body.insertAdjacentHTML('beforeend', modalHtml);
-    
+
     // Show modal
     const modal = new bootstrap.Modal(document.getElementById('quickViewModal'));
     modal.show();
-    
+
     // Clean up after modal is hidden
     document.getElementById('quickViewModal').addEventListener('hidden.bs.modal', function () {
         this.remove();
@@ -345,13 +345,13 @@ function showNotification(message, type = 'info') {
             </div>
         </div>
     `;
-    
+
     document.body.insertAdjacentHTML('beforeend', notificationHtml);
-    
+
     const toastElement = document.querySelector('.toast:last-child');
     const toast = new bootstrap.Toast(toastElement, { delay: 3000 });
     toast.show();
-    
+
     toastElement.addEventListener('hidden.bs.toast', function () {
         this.remove();
     });
@@ -361,7 +361,7 @@ function showNotification(message, type = 'info') {
 function handleSearch(event) {
     event.preventDefault();
     const searchQuery = event.target.querySelector('.search-input').value.trim();
-    
+
     if (searchQuery) {
         showNotification(`Searching for "${searchQuery}"...`, 'info');
         // In a real app, this would redirect to search results
@@ -374,7 +374,7 @@ function handleSearch(event) {
 // Location management
 function updateLocation(newLocation) {
     AppState.location = newLocation;
-    
+
     // Update all location displays
     const locationElements = [
         '#current-location',
@@ -382,14 +382,14 @@ function updateLocation(newLocation) {
         '#recommended-location',
         '#footer-location'
     ];
-    
+
     locationElements.forEach(selector => {
         const element = document.querySelector(selector);
         if (element) {
             element.textContent = newLocation;
         }
     });
-    
+
     showNotification(`Delivery location updated to ${newLocation}`, 'success');
 }
 
@@ -397,7 +397,7 @@ function updateLocation(newLocation) {
 function loadFlashSaleProducts() {
     const flashSaleContainer = document.getElementById('flash-products');
     if (!flashSaleContainer) return;
-    
+
     const flashSaleProducts = SAMPLE_PRODUCTS.slice(0, 4);
     flashSaleContainer.innerHTML = flashSaleProducts.map(product => createProductCard(product)).join('');
 }
@@ -406,7 +406,7 @@ function loadFlashSaleProducts() {
 function loadRecommendedProducts() {
     const recommendedContainer = document.getElementById('recommended-products');
     if (!recommendedContainer) return;
-    
+
     const recommendedProducts = SAMPLE_PRODUCTS.slice(2, 8);
     recommendedContainer.innerHTML = recommendedProducts.map(product => createProductCard(product)).join('');
 }
@@ -414,7 +414,7 @@ function loadRecommendedProducts() {
 // Loading state management
 function setLoading(isLoading) {
     AppState.isLoading = isLoading;
-    
+
     const loadingElements = document.querySelectorAll('.btn');
     loadingElements.forEach(btn => {
         if (isLoading) {
@@ -437,10 +437,10 @@ function handleNewsletterSubmit(event) {
     event.preventDefault();
     const emailInput = event.target.querySelector('input[type="email"]');
     const email = emailInput.value.trim();
-    
+
     if (email) {
         setLoading(true);
-        
+
         setTimeout(() => {
             setLoading(false);
             showNotification('Successfully subscribed to newsletter!', 'success');
@@ -456,23 +456,23 @@ document.addEventListener('DOMContentLoaded', function() {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
-    
+
     // Load product data
     loadFlashSaleProducts();
     loadRecommendedProducts();
-    
+
     // Set up search form
     const searchForm = document.querySelector('.search-form');
     if (searchForm) {
         searchForm.addEventListener('submit', handleSearch);
     }
-    
+
     // Set up newsletter form
     const newsletterForm = document.querySelector('.newsletter-form');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', handleNewsletterSubmit);
     }
-    
+
     // Set up location selectors
     const locationOptions = document.querySelectorAll('.location-option');
     locationOptions.forEach(option => {
@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateLocation(newLocation);
         });
     });
-    
+
     // Initialize carousel
     const carousel = document.getElementById('bannerCarousel');
     if (carousel) {
@@ -491,11 +491,11 @@ document.addEventListener('DOMContentLoaded', function() {
             wrap: true
         });
     }
-    
+
     // Initialize cart and wishlist UI
     updateCartUI();
     updateWishlistUI();
-    
+
     // Add smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -509,13 +509,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Add intersection observer for animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-    
+
     // Observe elements for animation
     document.querySelectorAll('.card, .feature-card, .product-card').forEach(el => {
         el.style.opacity = '0';
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-    
+
     console.log('GlobalMart initialized successfully!');
 });
 
