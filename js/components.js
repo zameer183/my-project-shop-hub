@@ -90,15 +90,22 @@ class SearchManager {
 
         dropdown.classList.remove('d-none');
 
-        // Add click handlers
-        dropdown.querySelectorAll('.search-suggestion').forEach(item => {
-            item.addEventListener('click', () => {
-                const suggestion = item.dataset.suggestion;
-                document.querySelector('.search-input').value = suggestion;
-                this.saveSearch(suggestion);
-                dropdown.classList.add('d-none');
+        // Add click handlers with error handling
+        try {
+            dropdown.querySelectorAll('.search-suggestion').forEach(item => {
+                item.addEventListener('click', () => {
+                    const suggestion = item.dataset.suggestion;
+                    const searchInput = document.querySelector('.search-input');
+                    if (searchInput) {
+                        searchInput.value = suggestion;
+                        this.saveSearch(suggestion);
+                        dropdown.classList.add('d-none');
+                    }
+                });
             });
-        });
+        } catch (error) {
+            console.warn('Error setting up search suggestions:', error);
+        }
     }
 }
 
