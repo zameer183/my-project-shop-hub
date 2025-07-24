@@ -103,6 +103,24 @@ body {
     font-size: 1.1rem;
 }
 
+/* Search Dropdown Fix */
+.search-form {
+    position: relative;
+    z-index: 1040; /* Higher than other elements but lower than modals */
+}
+
+.search-dropdown {
+    z-index: 1041 !important; /* Ensure dropdown appears above everything */
+    margin-top: 2px;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.search-suggestion:hover {
+    background-color: #f8fafc;
+    color: var(--primary-color);
+}
+
 /* Desktop Navigation */
 .navbar-nav {
     padding: 15px 0;
