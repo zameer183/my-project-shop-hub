@@ -449,6 +449,109 @@ function handleNewsletterSubmit(event) {
     }
 }
 
+// Authentication management
+function checkAuthState() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userName = localStorage.getItem('userName') || 'User';
+    const userEmail = localStorage.getItem('userEmail');
+
+    const accountBtn = document.getElementById('account-text');
+    const accountMenu = document.getElementById('account-menu');
+
+    if (isLoggedIn) {
+        accountBtn.textContent = userName;
+        accountMenu.innerHTML = `
+            <li><a class="dropdown-item" href="profile.html">
+                <i class="bi bi-person me-2"></i>My Profile
+            </a></li>
+            <li><a class="dropdown-item" href="orders.html">
+                <i class="bi bi-box me-2"></i>My Orders
+            </a></li>
+            <li><a class="dropdown-item" href="wishlist.html">
+                <i class="bi bi-heart me-2"></i>My Wishlist
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="seller-dashboard.html">
+                <i class="bi bi-shop me-2"></i>Seller Dashboard
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="logout.html">
+                <i class="bi bi-box-arrow-right me-2"></i>Sign Out
+            </a></li>
+        `;
+    } else {
+        accountBtn.textContent = 'Account';
+        accountMenu.innerHTML = `
+            <li><a class="dropdown-item" href="login.html">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+            </a></li>
+            <li><a class="dropdown-item" href="register.html">
+                <i class="bi bi-person-plus me-2"></i>Create Account
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="seller-register.html">
+                <i class="bi bi-shop me-2"></i>Become a Seller
+            </a></li>
+        `;
+    }
+}
+
+// Language selector functionality
+function initializeLanguageSelector() {
+    const languageOptions = document.querySelectorAll('[data-language]');
+    languageOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            const language = this.dataset.language;
+            const flag = this.querySelector('.me-2').textContent;
+
+            // Update the button
+            const languageBtn = document.querySelector('[data-bs-toggle="dropdown"] .me-2');
+            if (languageBtn) {
+                languageBtn.textContent = flag;
+            }
+
+            showNotification(`Language changed to ${language}`, 'success');
+        });
+    });
+}
+
+// Currency selector functionality
+function initializeCurrencySelector() {
+    const currencyOptions = document.querySelectorAll('[data-currency]');
+    currencyOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            const currency = this.dataset.currency;
+            const symbol = this.querySelector('.me-2').textContent;
+
+            // Update global currency
+            AppState.currency = currency;
+
+            // Update the button
+            const currencyBtns = document.querySelectorAll('.dropdown-toggle');
+            currencyBtns.forEach(btn => {
+                if (btn.textContent.trim() === '$' || btn.textContent.includes('$')) {
+                    btn.innerHTML = symbol + ' <i class="bi bi-chevron-down ms-1"></i>';
+                }
+            });
+
+            // Update all prices on page
+            updateAllPrices();
+
+            showNotification(`Currency changed to ${currency}`, 'success');
+        });
+    });
+}
+
+// Update all prices when currency changes
+function updateAllPrices() {
+    // Re-render product cards with new currency
+    loadFlashSaleProducts();
+    loadRecommendedProducts();
+    updateCartUI();
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Bootstrap tooltips
