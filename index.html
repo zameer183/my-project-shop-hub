@@ -110,14 +110,11 @@
 
                         <!-- Account -->
                         <div class="dropdown">
-                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person"></i> Account
+                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" id="account-btn">
+                                <i class="bi bi-person"></i> <span id="account-text">Account</span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/login">Sign In</a></li>
-                                <li><a class="dropdown-item" href="/register">Create Account</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/seller">Become a Seller</a></li>
+                            <ul class="dropdown-menu" id="account-menu">
+                                <!-- Will be populated by JavaScript based on login state -->
                             </ul>
                         </div>
 
