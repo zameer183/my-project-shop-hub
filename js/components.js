@@ -9,7 +9,7 @@ class SearchManager {
             'Gaming Laptop', 'Smart Watch', 'Jewelry', 'Books', 'Travel Bags'
         ];
     }
-    
+
     loadSearchHistory() {
         try {
             return JSON.parse(localStorage.getItem('searchHistory') || '[]');
@@ -17,32 +17,37 @@ class SearchManager {
             return [];
         }
     }
-    
+
     saveSearch(query) {
         this.searchHistory.unshift(query);
         this.searchHistory = [...new Set(this.searchHistory)].slice(0, 10);
         localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
     }
-    
+
     getSuggestions(query) {
         const lowerQuery = query.toLowerCase();
-        return this.suggestions.filter(suggestion => 
+        return this.suggestions.filter(suggestion =>
             suggestion.toLowerCase().includes(lowerQuery)
         ).slice(0, 5);
     }
-    
+
     initializeSearchDropdown() {
         const searchInput = document.querySelector('.search-input');
         if (!searchInput) return;
-        
+
         // Create dropdown element
         const dropdown = document.createElement('div');
         dropdown.className = 'search-dropdown position-absolute bg-white border rounded shadow-lg d-none';
-        dropdown.style.cssText = 'top: 100%; left: 0; right: 0; z-index: 1000; max-height: 300px; overflow-y: auto;';
-        
-        searchInput.parentElement.style.position = 'relative';
-        searchInput.parentElement.appendChild(dropdown);
-        
+        dropdown.style.cssText = 'top: calc(100% + 2px); left: 0; right: 0; z-index: 1041; max-height: 300px; overflow-y: auto; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);';
+
+        // Ensure parent has proper positioning
+        const searchForm = searchInput.closest('.search-form');
+        if (searchForm) {
+            searchForm.style.position = 'relative';
+            searchForm.style.zIndex = '1040';
+            searchForm.appendChild(dropdown);
+        }
+
         // Show/hide dropdown
         searchInput.addEventListener('focus', () => this.showSearchDropdown(dropdown, ''));
         searchInput.addEventListener('input', (e) => this.showSearchDropdown(dropdown, e.target.value));
@@ -50,23 +55,23 @@ class SearchManager {
             setTimeout(() => dropdown.classList.add('d-none'), 150);
         });
     }
-    
+
     showSearchDropdown(dropdown, query) {
         const suggestions = query ? this.getSuggestions(query) : this.searchHistory;
-        
+
         if (suggestions.length === 0) {
             dropdown.classList.add('d-none');
             return;
         }
-        
+
         dropdown.innerHTML = suggestions.map(suggestion => `
             <div class="dropdown-item search-suggestion px-3 py-2" data-suggestion="${suggestion}">
                 <i class="bi bi-search me-2"></i>${suggestion}
             </div>
         `).join('');
-        
+
         dropdown.classList.remove('d-none');
-        
+
         // Add click handlers
         dropdown.querySelectorAll('.search-suggestion').forEach(item => {
             item.addEventListener('click', () => {
@@ -86,7 +91,7 @@ class CartManager {
         this.cartSidebar = null;
         this.initializeCartSidebar();
     }
-    
+
     loadCart() {
         try {
             return JSON.parse(localStorage.getItem('cart') || '[]');
@@ -94,31 +99,31 @@ class CartManager {
             return [];
         }
     }
-    
+
     saveCart() {
         localStorage.setItem('cart', JSON.stringify(this.cart));
         this.updateCartUI();
     }
-    
+
     addItem(product, quantity = 1) {
         const existingItem = this.cart.find(item => item.id === product.id);
-        
+
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
             this.cart.push({ ...product, quantity });
         }
-        
+
         this.saveCart();
         this.showCartSidebar();
     }
-    
+
     removeItem(productId) {
         this.cart = this.cart.filter(item => item.id !== productId);
         this.saveCart();
         this.renderCartSidebar();
     }
-    
+
     updateQuantity(productId, quantity) {
         const item = this.cart.find(item => item.id === productId);
         if (item) {
@@ -131,15 +136,15 @@ class CartManager {
             }
         }
     }
-    
+
     getTotal() {
         return this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     }
-    
+
     getItemCount() {
         return this.cart.reduce((sum, item) => sum + item.quantity, 0);
     }
-    
+
     initializeCartSidebar() {
         const cartSidebarHtml = `
             <div class="offcanvas offcanvas-end" id="cartSidebar" tabindex="-1">
@@ -161,21 +166,21 @@ class CartManager {
                 </div>
             </div>
         `;
-        
+
         document.body.insertAdjacentHTML('beforeend', cartSidebarHtml);
         this.cartSidebar = new bootstrap.Offcanvas(document.getElementById('cartSidebar'));
         this.renderCartSidebar();
     }
-    
+
     showCartSidebar() {
         this.renderCartSidebar();
         this.cartSidebar.show();
     }
-    
+
     renderCartSidebar() {
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
-        
+
         if (this.cart.length === 0) {
             cartItems.innerHTML = `
                 <div class="text-center py-5">
@@ -209,20 +214,20 @@ class CartManager {
                 </div>
             `).join('');
         }
-        
+
         cartTotal.textContent = formatPrice(this.getTotal());
     }
-    
+
     updateCartUI() {
         const cartBadge = document.querySelector('a[href="/cart"] .badge');
         const cartTotal = document.querySelector('a[href="/cart"] .ms-2');
-        
+
         if (cartBadge) {
             const itemCount = this.getItemCount();
             cartBadge.textContent = itemCount;
             cartBadge.style.display = itemCount > 0 ? 'flex' : 'none';
         }
-        
+
         if (cartTotal) {
             cartTotal.textContent = formatPrice(this.getTotal());
         }
@@ -234,7 +239,7 @@ class WishlistManager {
     constructor() {
         this.wishlist = this.loadWishlist();
     }
-    
+
     loadWishlist() {
         try {
             return JSON.parse(localStorage.getItem('wishlist') || '[]');
@@ -242,15 +247,15 @@ class WishlistManager {
             return [];
         }
     }
-    
+
     saveWishlist() {
         localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
         this.updateWishlistUI();
     }
-    
+
     toggleItem(product) {
         const existingIndex = this.wishlist.findIndex(item => item.id === product.id);
-        
+
         if (existingIndex >= 0) {
             this.wishlist.splice(existingIndex, 1);
             showNotification(`${product.name} removed from wishlist`, 'info');
@@ -258,23 +263,23 @@ class WishlistManager {
             this.wishlist.push(product);
             showNotification(`${product.name} added to wishlist!`, 'success');
         }
-        
+
         this.saveWishlist();
         return existingIndex < 0; // Return true if added, false if removed
     }
-    
+
     isInWishlist(productId) {
         return this.wishlist.some(item => item.id === productId);
     }
-    
+
     updateWishlistUI() {
         const wishlistBadge = document.querySelector('a[href="/wishlist"] .badge');
-        
+
         if (wishlistBadge) {
             wishlistBadge.textContent = this.wishlist.length;
             wishlistBadge.style.display = this.wishlist.length > 0 ? 'flex' : 'none';
         }
-        
+
         // Update heart icons
         document.querySelectorAll('[onclick^="toggleWishlist"]').forEach(btn => {
             const productId = parseInt(btn.getAttribute('onclick').match(/\d+/)[0]);
@@ -298,34 +303,34 @@ class ComparisonManager {
         this.compareList = [];
         this.maxCompareItems = 4;
     }
-    
+
     addToCompare(product) {
         if (this.compareList.length >= this.maxCompareItems) {
             showNotification(`You can only compare up to ${this.maxCompareItems} items`, 'warning');
             return false;
         }
-        
+
         if (this.compareList.find(item => item.id === product.id)) {
             showNotification(`${product.name} is already in comparison`, 'info');
             return false;
         }
-        
+
         this.compareList.push(product);
         showNotification(`${product.name} added to comparison`, 'success');
         this.updateCompareUI();
         return true;
     }
-    
+
     removeFromCompare(productId) {
         this.compareList = this.compareList.filter(item => item.id !== productId);
         this.updateCompareUI();
     }
-    
+
     clearCompare() {
         this.compareList = [];
         this.updateCompareUI();
     }
-    
+
     updateCompareUI() {
         // Update compare button visibility
         const compareButtons = document.querySelectorAll('.compare-btn');
@@ -333,13 +338,13 @@ class ComparisonManager {
             btn.style.display = this.compareList.length > 0 ? 'block' : 'none';
         });
     }
-    
+
     showComparisonModal() {
         if (this.compareList.length < 2) {
             showNotification('Add at least 2 products to compare', 'warning');
             return;
         }
-        
+
         // Create comparison modal
         const modalHtml = `
             <div class="modal fade" id="comparisonModal" tabindex="-1">
@@ -411,11 +416,11 @@ class ComparisonManager {
                 </div>
             </div>
         `;
-        
+
         // Remove existing modal
         const existingModal = document.getElementById('comparisonModal');
         if (existingModal) existingModal.remove();
-        
+
         // Add and show modal
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         const modal = new bootstrap.Modal(document.getElementById('comparisonModal'));
@@ -435,7 +440,7 @@ class FilterManager {
         };
         this.sortBy = 'relevance'; // relevance, price-low, price-high, rating, newest
     }
-    
+
     applyFilters(products) {
         return products.filter(product => {
             if (this.filters.category && product.category !== this.filters.category) return false;
@@ -444,10 +449,10 @@ class FilterManager {
             return true;
         });
     }
-    
+
     sortProducts(products) {
         const sorted = [...products];
-        
+
         switch (this.sortBy) {
             case 'price-low':
                 return sorted.sort((a, b) => a.price - b.price);
@@ -461,17 +466,17 @@ class FilterManager {
                 return sorted; // relevance
         }
     }
-    
+
     updateFilter(filterName, value) {
         this.filters[filterName] = value;
         this.refreshProducts();
     }
-    
+
     updateSort(sortBy) {
         this.sortBy = sortBy;
         this.refreshProducts();
     }
-    
+
     refreshProducts() {
         // This would trigger a re-render of the product list
         const event = new CustomEvent('filtersChanged', {
@@ -491,14 +496,14 @@ document.addEventListener('DOMContentLoaded', function() {
     wishlistManager = new WishlistManager();
     comparisonManager = new ComparisonManager();
     filterManager = new FilterManager();
-    
+
     // Initialize search dropdown
     searchManager.initializeSearchDropdown();
-    
+
     // Update initial UI
     cartManager.updateCartUI();
     wishlistManager.updateWishlistUI();
-    
+
     // Set up cart link to open sidebar instead of navigation
     const cartLink = document.querySelector('a[href="/cart"]');
     if (cartLink) {
@@ -507,7 +512,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cartManager.showCartSidebar();
         });
     }
-    
+
     console.log('Component managers initialized successfully!');
 });
 
