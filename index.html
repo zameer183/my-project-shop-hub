@@ -16,20 +16,21 @@
 </head>
 <body>
     <!-- Top Bar -->
-    <div class="top-bar bg-dark text-white py-2">
-        <div class="container">
+    <div class="top-bar text-white py-2" style="background-color: #2d3748;">
+        <div class="container-fluid px-4">
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="d-flex gap-4">
-                        <span><i class="bi bi-telephone"></i> 24/7 Customer Support: +1-800-SHOP-NOW</span>
-                        <span><i class="bi bi-truck"></i> Free shipping on orders over $50</span>
+                        <span style="font-size: 0.85rem;"><i class="bi bi-telephone-fill"></i> 24/7 Customer Support: +1-800-SHOP-NOW</span>
+                        <span style="font-size: 0.85rem;"><i class="bi bi-truck"></i> Free shipping on orders over $50</span>
                     </div>
                 </div>
                 <div class="col-md-4 text-end">
-                    <span>Follow us:</span>
+                    <span style="font-size: 0.85rem;">Follow us:</span>
                     <a href="#" class="text-white ms-2"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="text-white ms-2"><i class="bi bi-twitter"></i></a>
                     <a href="#" class="text-white ms-2"><i class="bi bi-instagram"></i></a>
+                    <span class="ms-3" style="font-size: 0.85rem;">🏳️‍🌈 🌐 💳</span>
                 </div>
             </div>
         </div>
@@ -37,17 +38,17 @@
 
     <!-- Main Header -->
     <header class="header-main bg-white border-bottom sticky-top" style="z-index: 1000 !important;">
-        <div class="container-fluid px-5">
-            <div class="row align-items-center">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center py-2">
                 <!-- Logo -->
-                <div class="col-xl-2 col-lg-3">
+                <div class="col-xl-2 col-lg-2">
                     <a href="/" class="d-flex align-items-center text-decoration-none">
-                        <div class="logo-icon bg-gradient me-3">
-                            <i class="bi bi-bag-check text-white"></i>
+                        <div class="rounded-circle me-2" style="background: linear-gradient(45deg, #3b82f6, #8b5cf6); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-bag-check text-white" style="font-size: 1.2rem;"></i>
                         </div>
                         <div>
-                            <h1 class="h3 mb-0 text-dark fw-bold">GlobalMart</h1>
-                            <small class="text-muted">Shop Worldwide</small>
+                            <h1 class="h5 mb-0 text-dark fw-bold">GlobalMart</h1>
+                            <small class="text-muted" style="font-size: 0.75rem;">Shop Worldwide</small>
                         </div>
                     </a>
                 </div>
@@ -55,8 +56,8 @@
                 <!-- Location Selector -->
                 <div class="col-xl-2 col-lg-2">
                     <div class="dropdown">
-                        <button class="btn btn-link text-dark dropdown-toggle fw-semibold" type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-geo-alt me-2"></i>Deliver to: <span id="current-location">United States</span>
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size: 0.85rem;">
+                            Deliver to: <span id="current-location">United States</span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item location-option" href="#" data-location="United States">United States</a></li>
@@ -68,11 +69,11 @@
                 </div>
 
                 <!-- Search Bar -->
-                <div class="col-xl-3 col-lg-3">
+                <div class="col-xl-4 col-lg-4">
                     <form class="search-form">
                         <div class="input-group">
-                            <input type="text" class="form-control search-input" placeholder="Search for products, brands and more...">
-                            <button class="btn btn-primary" type="submit">
+                            <input type="text" class="form-control search-input" placeholder="Search products..." style="font-size: 0.9rem; height: 38px;">
+                            <button class="btn btn-primary" type="submit" style="height: 38px;">
                                 <i class="bi bi-search"></i>
                             </button>
                         </div>
@@ -80,189 +81,84 @@
                 </div>
 
                 <!-- Right Actions -->
-                <div class="col-xl-5 col-lg-4">
-                    <div class="d-flex align-items-center justify-content-end gap-3">
+                <div class="col-xl-4 col-lg-4">
+                    <div class="d-flex align-items-center justify-content-end gap-2">
+                        <!-- US Flag -->
+                        <span style="font-size: 1.2rem;">🇺🇸</span>
+
                         <!-- Language Selector -->
                         <div class="dropdown">
-                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-globe"></i> 🇺🇸
+                            <button class="btn btn-link text-dark dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" style="font-size: 0.85rem;">
+                                US
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#" data-language="English"><span class="me-2">🇺🇸</span>English</a></li>
                                 <li><a class="dropdown-item" href="#" data-language="Español"><span class="me-2">🇪🇸</span>Español</a></li>
-                                <li><a class="dropdown-item" href="#" data-language="Français"><span class="me-2">🇫🇷</span>Français</a></li>
-                                <li><a class="dropdown-item" href="#" data-language="العربية"><span class="me-2">🇸🇦</span>العربية</a></li>
                             </ul>
                         </div>
 
                         <!-- Currency Selector -->
                         <div class="dropdown">
-                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <button class="btn btn-link text-dark dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" style="font-size: 0.85rem;">
                                 $
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#" data-currency="USD"><span class="me-2">$</span>US Dollar</a></li>
                                 <li><a class="dropdown-item" href="#" data-currency="EUR"><span class="me-2">€</span>Euro</a></li>
-                                <li><a class="dropdown-item" href="#" data-currency="GBP"><span class="me-2">£</span>British Pound</a></li>
-                                <li><a class="dropdown-item" href="#" data-currency="PKR"><span class="me-2">₨</span>Pakistani Rupee</a></li>
                             </ul>
                         </div>
 
                         <!-- Account -->
                         <div class="dropdown">
-                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" id="account-btn">
+                            <button class="btn btn-link text-dark dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" id="account-btn" style="font-size: 0.85rem;">
                                 <i class="bi bi-person"></i> <span id="account-text">Account</span>
                             </button>
                             <ul class="dropdown-menu" id="account-menu">
-                                <!-- Will be populated by JavaScript based on login state -->
+                                <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Sign In</a></li>
+                                <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i>Create Account</a></li>
                             </ul>
                         </div>
 
                         <!-- Wishlist -->
-                        <a href="/wishlist" class="btn btn-link text-dark position-relative">
-                            <i class="bi bi-heart"></i>
-                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                        <a href="/wishlist" class="btn btn-link text-dark position-relative p-1">
+                            <i class="bi bi-heart" style="font-size: 1.1rem;"></i>
                         </a>
 
                         <!-- Cart -->
-                        <a href="/cart" class="btn btn-link text-dark position-relative">
-                            <i class="bi bi-cart"></i>
-                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
-                            <span class="ms-2 d-none d-lg-inline">$0.00</span>
+                        <a href="/cart" class="btn btn-link text-dark position-relative p-1">
+                            <i class="bi bi-cart" style="font-size: 1.1rem;"></i>
+                            <span class="badge bg-danger position-absolute" style="top: -5px; right: -5px; font-size: 0.7rem;">1</span>
                         </a>
-
-                        <!-- Mobile Menu Toggle -->
-                        <button class="btn btn-link text-dark d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
-                            <i class="bi bi-list"></i>
-                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Navigation Menu - Desktop -->
-            <div class="d-none d-lg-block border-top">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="navbar-nav">
-                        <div class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <i class="bi bi-lightning"></i> Electronics
+            <div class="d-none d-lg-block" style="background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
+                <div class="container-fluid px-4">
+                    <nav class="navbar navbar-expand-lg py-1">
+                        <div class="navbar-nav d-flex justify-content-center w-100">
+                            <a class="nav-link fw-semibold text-dark" href="/electronics" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <i class="bi bi-lightning me-1"></i> Electronics
                             </a>
-                            <div class="dropdown-menu mega-menu">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <a href="/category/smartphones" class="dropdown-item">
-                                                <i class="bi bi-phone me-2"></i>Smartphones
-                                            </a>
-                                            <a href="/category/laptops" class="dropdown-item">
-                                                <i class="bi bi-laptop me-2"></i>Laptops
-                                            </a>
-                                            <a href="/category/headphones" class="dropdown-item">
-                                                <i class="bi bi-headphones me-2"></i>Headphones
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <a href="/category/cameras" class="dropdown-item">
-                                                <i class="bi bi-camera me-2"></i>Cameras
-                                            </a>
-                                            <a href="/category/watches" class="dropdown-item">
-                                                <i class="bi bi-smartwatch me-2"></i>Smart Watches
-                                            </a>
-                                            <a href="/category/gaming" class="dropdown-item">
-                                                <i class="bi bi-controller me-2"></i>Gaming
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <i class="bi bi-bag"></i> Fashion
+                            <a class="nav-link fw-semibold text-dark" href="/fashion" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <i class="bi bi-palette me-1"></i> Fashion
                             </a>
-                            <div class="dropdown-menu mega-menu">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <a href="/category/mens-fashion" class="dropdown-item">
-                                                <i class="bi bi-person-check me-2"></i>Men's Clothing
-                                            </a>
-                                            <a href="/category/womens-fashion" class="dropdown-item">
-                                                <i class="bi bi-person-dress me-2"></i>Women's Clothing
-                                            </a>
-                                            <a href="/category/shoes" class="dropdown-item">
-                                                <i class="bi bi-boot me-2"></i>Shoes
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <a href="/category/accessories" class="dropdown-item">
-                                                <i class="bi bi-watch me-2"></i>Accessories
-                                            </a>
-                                            <a href="/category/bags" class="dropdown-item">
-                                                <i class="bi bi-bag me-2"></i>Bags
-                                            </a>
-                                            <a href="/category/jewelry" class="dropdown-item">
-                                                <i class="bi bi-gem me-2"></i>Jewelry
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <i class="bi bi-house"></i> Home & Living
+                            <a class="nav-link fw-semibold text-dark" href="/home" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <i class="bi bi-house me-1"></i> Home & Living
                             </a>
-                            <div class="dropdown-menu mega-menu">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <a href="/category/furniture" class="dropdown-item">
-                                                <i class="bi bi-house-door me-2"></i>Furniture
-                                            </a>
-                                            <a href="/category/kitchen" class="dropdown-item">
-                                                <i class="bi bi-cup-hot me-2"></i>Kitchen
-                                            </a>
-                                            <a href="/category/decor" class="dropdown-item">
-                                                <i class="bi bi-palette me-2"></i>Decor
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <i class="bi bi-bicycle"></i> Sports
+                            <a class="nav-link fw-semibold text-dark" href="/sports" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <i class="bi bi-bicycle me-1"></i> Sports
                             </a>
-                            <div class="dropdown-menu mega-menu">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <a href="/category/fitness" class="dropdown-item">
-                                                <i class="bi bi-heart-pulse me-2"></i>Fitness Equipment
-                                            </a>
-                                            <a href="/category/outdoor" class="dropdown-item">
-                                                <i class="bi bi-tree me-2"></i>Outdoor Sports
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="nav-link fw-semibold text-danger" href="/flash-deals" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <i class="bi bi-lightning-charge me-1"></i> Flash Deals
+                            </a>
+                            <a class="nav-link fw-semibold text-success" href="/sell" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <i class="bi bi-shop me-1"></i> Sell on GlobalMart
+                            </a>
                         </div>
-
-                        <a class="nav-link text-danger fw-semibold" href="/deals">
-                            <i class="bi bi-lightning-charge"></i> Flash Deals
-                        </a>
-
-                        <a class="nav-link text-success fw-semibold" href="/seller">
-                            <i class="bi bi-shop"></i> Sell on GlobalMart
-                        </a>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
@@ -345,7 +241,7 @@
                         <div class="col-6">
                             <div class="hero-stat-card">
                                 <div class="text-center text-white">
-                                    <div class="display-6">🇺����</div>
+                                    <div class="display-6">🇺🇸</div>
                                     <div class="fw-bold">500K+</div>
                                     <div class="small">USA</div>
                                 </div>
