@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalMart - Your Global Shopping Paradise</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar bg-dark text-white py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex gap-4">
+                        <span><i class="bi bi-telephone"></i> 24/7 Customer Support: +1-800-SHOP-NOW</span>
+                        <span><i class="bi bi-truck"></i> Free shipping on orders over $50</span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <span>Follow us:</span>
+                    <a href="#" class="text-white ms-2"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white ms-2"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white ms-2"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="header-main bg-white border-bottom sticky-top">
+        <div class="container">
+            <div class="row align-items-center py-3">
+                <!-- Logo -->
+                <div class="col-lg-3 col-md-4">
+                    <a href="/" class="d-flex align-items-center text-decoration-none">
+                        <div class="logo-icon bg-gradient me-3">
+                            <i class="bi bi-bag-check text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="h4 mb-0 text-dark fw-bold">GlobalMart</h1>
+                            <small class="text-muted">Shop Worldwide</small>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Location Selector -->
+                <div class="col-lg-2 col-md-3 d-none d-md-block">
+                    <div class="dropdown">
+                        <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-geo-alt"></i> Deliver to: <span id="current-location">United States</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item location-option" href="#" data-location="United States">United States</a></li>
+                            <li><a class="dropdown-item location-option" href="#" data-location="United Kingdom">United Kingdom</a></li>
+                            <li><a class="dropdown-item location-option" href="#" data-location="Canada">Canada</a></li>
+                            <li><a class="dropdown-item location-option" href="#" data-location="Australia">Australia</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="col-lg-4 col-md-5">
+                    <form class="search-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control search-input" placeholder="Search for products, brands and more...">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="d-flex align-items-center justify-content-end gap-3">
+                        <!-- Language Selector -->
+                        <div class="dropdown">
+                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-globe"></i> 🇺🇸
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><span class="me-2">🇺🇸</span>English</a></li>
+                                <li><a class="dropdown-item" href="#"><span class="me-2">🇪🇸</span>Español</a></li>
+                                <li><a class="dropdown-item" href="#"><span class="me-2">🇫🇷</span>Français</a></li>
+                                <li><a class="dropdown-item" href="#"><span class="me-2">🇸🇦</span>العربية</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Currency Selector -->
+                        <div class="dropdown">
+                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                $
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><span class="me-2">$</span>US Dollar</a></li>
+                                <li><a class="dropdown-item" href="#"><span class="me-2">€</span>Euro</a></li>
+                                <li><a class="dropdown-item" href="#"><span class="me-2">£</span>British Pound</a></li>
+                                <li><a class="dropdown-item" href="#"><span class="me-2">₨</span>Pakistani Rupee</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Account -->
+                        <div class="dropdown">
+                            <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person"></i> Account
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/login">Sign In</a></li>
+                                <li><a class="dropdown-item" href="/register">Create Account</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/seller">Become a Seller</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Wishlist -->
+                        <a href="/wishlist" class="btn btn-link text-dark position-relative">
+                            <i class="bi bi-heart"></i>
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                        </a>
+
+                        <!-- Cart -->
+                        <a href="/cart" class="btn btn-link text-dark position-relative">
+                            <i class="bi bi-cart"></i>
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                            <span class="ms-2 d-none d-lg-inline">$0.00</span>
+                        </a>
+
+                        <!-- Mobile Menu Toggle -->
+                        <button class="btn btn-link text-dark d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                            <i class="bi bi-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Menu - Desktop -->
+            <div class="d-none d-lg-block border-top">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="navbar-nav">
+                        <div class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-lightning"></i> Electronics
+                            </a>
+                            <div class="dropdown-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="/category/smartphones" class="dropdown-item">
+                                                <i class="bi bi-phone me-2"></i>Smartphones
+                                            </a>
+                                            <a href="/category/laptops" class="dropdown-item">
+                                                <i class="bi bi-laptop me-2"></i>Laptops
+                                            </a>
+                                            <a href="/category/headphones" class="dropdown-item">
+                                                <i class="bi bi-headphones me-2"></i>Headphones
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="/category/cameras" class="dropdown-item">
+                                                <i class="bi bi-camera me-2"></i>Cameras
+                                            </a>
+                                            <a href="/category/watches" class="dropdown-item">
+                                                <i class="bi bi-smartwatch me-2"></i>Smart Watches
+                                            </a>
+                                            <a href="/category/gaming" class="dropdown-item">
+                                                <i class="bi bi-controller me-2"></i>Gaming
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-bag"></i> Fashion
+                            </a>
+                            <div class="dropdown-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="/category/mens-fashion" class="dropdown-item">
+                                                <i class="bi bi-person-check me-2"></i>Men's Clothing
+                                            </a>
+                                            <a href="/category/womens-fashion" class="dropdown-item">
+                                                <i class="bi bi-person-dress me-2"></i>Women's Clothing
+                                            </a>
+                                            <a href="/category/shoes" class="dropdown-item">
+                                                <i class="bi bi-boot me-2"></i>Shoes
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="/category/accessories" class="dropdown-item">
+                                                <i class="bi bi-watch me-2"></i>Accessories
+                                            </a>
+                                            <a href="/category/bags" class="dropdown-item">
+                                                <i class="bi bi-bag me-2"></i>Bags
+                                            </a>
+                                            <a href="/category/jewelry" class="dropdown-item">
+                                                <i class="bi bi-gem me-2"></i>Jewelry
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-house"></i> Home & Living
+                            </a>
+                            <div class="dropdown-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="/category/furniture" class="dropdown-item">
+                                                <i class="bi bi-house-door me-2"></i>Furniture
+                                            </a>
+                                            <a href="/category/kitchen" class="dropdown-item">
+                                                <i class="bi bi-cup-hot me-2"></i>Kitchen
+                                            </a>
+                                            <a href="/category/decor" class="dropdown-item">
+                                                <i class="bi bi-palette me-2"></i>Decor
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-bicycle"></i> Sports
+                            </a>
+                            <div class="dropdown-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="/category/fitness" class="dropdown-item">
+                                                <i class="bi bi-heart-pulse me-2"></i>Fitness Equipment
+                                            </a>
+                                            <a href="/category/outdoor" class="dropdown-item">
+                                                <i class="bi bi-tree me-2"></i>Outdoor Sports
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="nav-link text-danger fw-semibold" href="/deals">
+                            <i class="bi bi-lightning-charge"></i> Flash Deals
+                        </a>
+
+                        <a class="nav-link text-success fw-semibold" href="/seller">
+                            <i class="bi bi-shop"></i> Sell on GlobalMart
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Offcanvas -->
+    <div class="offcanvas offcanvas-start" id="mobileMenu">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">GlobalMart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="accordion" id="mobileAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#electronicsCollapse">
+                            <i class="bi bi-lightning me-2"></i> Electronics
+                        </button>
+                    </h2>
+                    <div id="electronicsCollapse" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
+                        <div class="accordion-body">
+                            <a href="/category/smartphones" class="d-block py-2">Smartphones</a>
+                            <a href="/category/laptops" class="d-block py-2">Laptops</a>
+                            <a href="/category/headphones" class="d-block py-2">Headphones</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-lg-6">
+                    <div class="hero-content text-white">
+                        <div class="mb-4">
+                            <h1 class="display-3 fw-bold mb-3">Shop the World, Delivered to You</h1>
+                            <p class="lead">Discover millions of products from global sellers with fast, secure delivery</p>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-geo-alt me-2"></i>
+                                <span>Delivering to <span id="hero-location">United States</span></span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-globe me-2"></i>
+                                <span>200+ Countries</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column flex-sm-row gap-3 mb-4">
+                            <a href="/shopping" class="btn btn-light btn-lg text-primary fw-semibold">
+                                Start Shopping
+                                <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                            <a href="/seller" class="btn btn-outline-light btn-lg">
+                                Become a Seller
+                                <i class="bi bi-shop ms-2"></i>
+                            </a>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                <span>2M+ Happy Customers</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-shield-check text-success me-2"></i>
+                                <span>Secure Payments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="hero-stat-card">
+                                <div class="text-center text-white">
+                                    <div class="display-6">🇺🇸</div>
+                                    <div class="fw-bold">500K+</div>
+                                    <div class="small">USA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="hero-stat-card">
+                                <div class="text-center text-white">
+                                    <div class="display-6">🇨🇳</div>
+                                    <div class="fw-bold">800K+</div>
+                                    <div class="small">China</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="hero-stat-card">
+                                <div class="text-center text-white">
+                                    <div class="display-6">🇩🇪</div>
+                                    <div class="fw-bold">200K+</div>
+                                    <div class="small">Germany</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="hero-stat-card">
+                                <div class="text-center text-white">
+                                    <div class="display-6">🇬🇧</div>
+                                    <div class="fw-bold">150K+</div>
+                                    <div class="small">UK</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Slider -->
+    <section class="banner-slider-section py-5">
+        <div class="container">
+            <div id="bannerCarousel" class="carousel slide banner-carousel" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="3"></button>
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="4"></button>
+                </div>
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="banner-slide electronics-banner">
+                            <img src="images/11.avif" alt="Electronics Sale" class="d-block w-100">
+                            <div class="carousel-caption">
+                                <span class="badge bg-danger mb-3">Limited Time</span>
+                                <h2 class="display-4 fw-bold">Mega Electronics Sale</h2>
+                                <p class="h4 mb-3">Up to 70% OFF</p>
+                                <p class="lead">Latest smartphones, laptops, and gadgets at unbeatable prices</p>
+                                <a href="/category/electronics" class="btn btn-light btn-lg">
+                                    Shop Electronics
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="banner-slide fashion-banner">
+                            <img src="images/15.avif" alt="Fashion Sale" class="d-block w-100">
+                            <div class="carousel-caption">
+                                <span class="badge bg-info mb-3">New Collection</span>
+                                <h2 class="display-4 fw-bold">Fashion Week Special</h2>
+                                <p class="h4 mb-3">Buy 2 Get 1 FREE</p>
+                                <p class="lead">Trendy clothing, shoes, and accessories for all seasons</p>
+                                <a href="/category/fashion" class="btn btn-light btn-lg">
+                                    Explore Fashion
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="banner-slide home-banner">
+                            <img src="images/Essentials.avif" alt="Home Living" class="d-block w-100">
+                            <div class="carousel-caption">
+                                <span class="badge bg-success mb-3">Best Sellers</span>
+                                <h2 class="display-4 fw-bold">Home & Living Essentials</h2>
+                                <p class="h4 mb-3">Transform Your Space</p>
+                                <p class="lead">Beautiful furniture, decor, and home appliances</p>
+                                <a href="/category/home" class="btn btn-light btn-lg">
+                                    Shop Home
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="banner-slide books-banner">
+                            <img src="images/Book.avif" alt="Books Education" class="d-block w-100">
+                            <div class="carousel-caption">
+                                <span class="badge bg-warning mb-3">Knowledge Hub</span>
+                                <h2 class="display-4 fw-bold">Books & Education</h2>
+                                <p class="h4 mb-3">Feed Your Mind</p>
+                                <p class="lead">Discover knowledge with our vast collection of books and learning materials</p>
+                                <a href="/category/books" class="btn btn-light btn-lg">
+                                    Explore Books
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="banner-slide iphone-banner">
+                            <img src="images/iphone 15.avif" alt="iPhone 15" class="d-block w-100">
+                            <div class="carousel-caption">
+                                <span class="badge bg-primary mb-3">Latest Model</span>
+                                <h2 class="display-4 fw-bold">iPhone 15 Pro Max</h2>
+                                <p class="h4 mb-3">Titanium. So Strong. So Light. So Pro.</p>
+                                <p class="lead">The ultimate iPhone with titanium design, A17 Pro chip, and Pro camera system</p>
+                                <a href="/product/iphone-15" class="btn btn-light btn-lg">
+                                    Buy iPhone
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Features Section -->
+    <section class="global-features-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Why Shop Globally with Us?</h2>
+                <p class="lead text-muted">Experience the world of shopping with unmatched convenience and security</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card feature-card h-100 text-center border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4">
+                                <i class="bi bi-globe text-primary"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Global Reach</h5>
+                            <p class="card-text text-muted">Shop from sellers in 200+ countries</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card feature-card h-100 text-center border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4">
+                                <i class="bi bi-shield-check text-success"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Buyer Protection</h5>
+                            <p class="card-text text-muted">100% secure with money-back guarantee</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card feature-card h-100 text-center border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4">
+                                <i class="bi bi-truck text-purple"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Worldwide Shipping</h5>
+                            <p class="card-text text-muted">Fast delivery to your doorstep</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card feature-card h-100 text-center border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="feature-icon mb-4">
+                                <i class="bi bi-headset text-warning"></i>
+                            </div>
+                            <h5 class="card-title mb-3">24/7 Support</h5>
+                            <p class="card-text text-muted">Multilingual customer service</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Sale Section -->
+    <section class="flash-sale-section py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex align-items-center">
+                    <div class="flash-icon me-3">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <div>
+                        <h2 class="display-6 fw-bold mb-1">Flash Sale</h2>
+                        <p class="text-muted mb-0">Limited time offers from global sellers</p>
+                    </div>
+                    <span class="badge bg-danger ms-3 flash-badge">
+                        <i class="bi bi-clock me-1"></i>Ends in 24h
+                    </span>
+                </div>
+                <a href="/deals" class="btn btn-outline-primary">
+                    View All Deals
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+
+            <div class="row g-4" id="flash-products">
+                <!-- Flash sale products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Categories Section -->
+    <section class="categories-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Shop by Category</h2>
+                <p class="lead text-muted">Explore millions of products across all categories</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="/category/electronics" class="text-decoration-none">
+                        <div class="card category-card h-100 border-0 shadow-sm">
+                            <div class="card-header category-header electronics-gradient p-0">
+                                <div class="category-icon-container">
+                                    <i class="bi bi-phone text-white"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-1">Electronics</h6>
+                                <small class="text-muted">50k+ items</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="/category/fashion" class="text-decoration-none">
+                        <div class="card category-card h-100 border-0 shadow-sm">
+                            <div class="card-header category-header fashion-gradient p-0">
+                                <div class="category-icon-container">
+                                    <i class="bi bi-bag text-white"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-1">Fashion</h6>
+                                <small class="text-muted">30k+ items</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="/category/home" class="text-decoration-none">
+                        <div class="card category-card h-100 border-0 shadow-sm">
+                            <div class="card-header category-header home-gradient p-0">
+                                <div class="category-icon-container">
+                                    <i class="bi bi-house text-white"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-1">Home & Living</h6>
+                                <small class="text-muted">25k+ items</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="/category/sports" class="text-decoration-none">
+                        <div class="card category-card h-100 border-0 shadow-sm">
+                            <div class="card-header category-header sports-gradient p-0">
+                                <div class="category-icon-container">
+                                    <i class="bi bi-bicycle text-white"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-1">Sports</h6>
+                                <small class="text-muted">15k+ items</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="/category/beauty" class="text-decoration-none">
+                        <div class="card category-card h-100 border-0 shadow-sm">
+                            <div class="card-header category-header beauty-gradient p-0">
+                                <div class="category-icon-container">
+                                    <i class="bi bi-palette text-white"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-1">Beauty</h6>
+                                <small class="text-muted">20k+ items</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="/category/automotive" class="text-decoration-none">
+                        <div class="card category-card h-100 border-0 shadow-sm">
+                            <div class="card-header category-header automotive-gradient p-0">
+                                <div class="category-icon-container">
+                                    <i class="bi bi-car-front text-white"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-1">Automotive</h6>
+                                <small class="text-muted">10k+ items</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Electronics Showcase Section -->
+    <section class="electronics-showcase py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="position-relative">
+                        <img src="https://www.sofeast.com/wp-content/uploads/2020/11/11-Common-Electronic-Products-Compliance-Requirements.jpg" 
+                             alt="Electronic Products" class="img-fluid rounded-3 shadow-lg">
+                        <div class="position-absolute top-0 start-0 m-3">
+                            <span class="badge bg-success">
+                                <i class="bi bi-shield-check me-1"></i>Certified Products
+                            </span>
+                        </div>
+                        <div class="position-absolute top-0 end-0 m-3">
+                            <span class="badge bg-primary">
+                                <i class="bi bi-award me-1"></i>Quality Assured
+                            </span>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0 m-3">
+                            <span class="badge bg-purple">
+                                <i class="bi bi-globe me-1"></i>Global Standards
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 order-lg-1">
+                    <div class="pe-lg-4">
+                        <span class="badge bg-primary-subtle text-primary mb-3">📱 Electronics Category</span>
+                        <h2 class="display-5 fw-bold mb-4">Premium Electronic Products</h2>
+                        <p class="lead text-muted mb-4">
+                            Discover our extensive collection of certified electronic products from trusted global manufacturers. 
+                            All products meet international compliance requirements and quality standards.
+                        </p>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <div class="card border-0 bg-light">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon-small bg-primary-subtle me-3">
+                                                <i class="bi bi-phone text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">Mobile Devices</h6>
+                                                <small class="text-muted">Latest smartphones & tablets</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="card border-0 bg-light">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon-small bg-success-subtle me-3">
+                                                <i class="bi bi-laptop text-success"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">Computers</h6>
+                                                <small class="text-muted">Laptops & accessories</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="card border-0 bg-light">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon-small bg-purple-subtle me-3">
+                                                <i class="bi bi-headphones text-purple"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">Audio</h6>
+                                                <small class="text-muted">Headphones & speakers</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="card border-0 bg-light">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon-small bg-warning-subtle me-3">
+                                                <i class="bi bi-camera text-warning"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">Photography</h6>
+                                                <small class="text-muted">Cameras & equipment</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex flex-column flex-sm-row gap-3 mb-4">
+                            <a href="/category/electronics" class="btn btn-primary btn-lg">
+                                Browse Electronics
+                                <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                            <a href="/shopping" class="btn btn-outline-primary btn-lg">View All Categories</a>
+                        </div>
+                        
+                        <div class="alert alert-primary" role="alert">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                <strong>Quality Guarantee</strong>
+                            </div>
+                            <p class="mb-0 mt-2">All electronic products are tested for compliance and come with international warranty coverage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Products Section -->
+    <section class="recommended-section py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="display-6 fw-bold mb-2">Recommended for You</h2>
+                    <p class="text-muted mb-0">Curated based on your location: <span id="recommended-location">United States</span></p>
+                </div>
+                <a href="/products" class="btn btn-outline-primary">
+                    View All Products
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+
+            <div class="row g-4" id="recommended-products">
+                <!-- Recommended products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">What Our Global Customers Say</h2>
+                <p class="lead text-muted">Trusted by millions of shoppers worldwide</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card testimonial-card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <blockquote class="blockquote mb-4">
+                                <p>"Amazing products from global sellers! Fast shipping and great quality."</p>
+                            </blockquote>
+                            <div class="d-flex align-items-center">
+                                <img src="/placeholder.svg" alt="Sarah Johnson" class="rounded-circle me-3" width="40" height="40">
+                                <div>
+                                    <div class="d-flex align-items-center">
+                                        <strong>Sarah Johnson</strong>
+                                        <span class="badge bg-success ms-2">
+                                            <i class="bi bi-check-circle me-1"></i>Verified
+                                        </span>
+                                    </div>
+                                    <div class="text-muted small">
+                                        <i class="bi bi-geo-alt me-1"></i>New York, USA
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card testimonial-card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <blockquote class="blockquote mb-4">
+                                <p>"Love the variety and international options. Customer service is excellent!"</p>
+                            </blockquote>
+                            <div class="d-flex align-items-center">
+                                <img src="/placeholder.svg" alt="Ahmed Al-Rashid" class="rounded-circle me-3" width="40" height="40">
+                                <div>
+                                    <div class="d-flex align-items-center">
+                                        <strong>Ahmed Al-Rashid</strong>
+                                        <span class="badge bg-success ms-2">
+                                            <i class="bi bi-check-circle me-1"></i>Verified
+                                        </span>
+                                    </div>
+                                    <div class="text-muted small">
+                                        <i class="bi bi-geo-alt me-1"></i>Dubai, UAE
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card testimonial-card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <blockquote class="blockquote mb-4">
+                                <p>"Best marketplace for finding unique items from around the world."</p>
+                            </blockquote>
+                            <div class="d-flex align-items-center">
+                                <img src="/placeholder.svg" alt="Maria García" class="rounded-circle me-3" width="40" height="40">
+                                <div>
+                                    <div class="d-flex align-items-center">
+                                        <strong>Maria García</strong>
+                                        <span class="badge bg-success ms-2">
+                                            <i class="bi bi-check-circle me-1"></i>Verified
+                                        </span>
+                                    </div>
+                                    <div class="text-muted small">
+                                        <i class="bi bi-geo-alt me-1"></i>Madrid, Spain
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Stats Section -->
+    <section class="stats-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Trusted by Millions Worldwide</h2>
+                <p class="lead text-muted">Join our growing global community</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-6 text-center">
+                    <div class="stat-item">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-people text-primary"></i>
+                        </div>
+                        <div class="stat-number display-4 fw-bold text-primary mb-2">2M+</div>
+                        <div class="text-muted">Happy Customers</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6 text-center">
+                    <div class="stat-item">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-gift text-success"></i>
+                        </div>
+                        <div class="stat-number display-4 fw-bold text-success mb-2">50M+</div>
+                        <div class="text-muted">Products Sold</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6 text-center">
+                    <div class="stat-item">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-award text-warning"></i>
+                        </div>
+                        <div class="stat-number display-4 fw-bold text-warning mb-2">150+</div>
+                        <div class="text-muted">Awards Won</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6 text-center">
+                    <div class="stat-item">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-target text-danger"></i>
+                        </div>
+                        <div class="stat-number display-4 fw-bold text-danger mb-2">99%</div>
+                        <div class="text-muted">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-overlay"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="text-white">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="bi bi-globe display-4 me-3"></i>
+                            <div>
+                                <h2 class="display-6 fw-bold mb-2">Stay Connected Globally</h2>
+                                <p class="text-white-50">Get updates in your preferred language</p>
+                            </div>
+                        </div>
+                        
+                        <p class="lead text-white-75 mb-4">
+                            Subscribe to receive personalized deals, new seller alerts, and exclusive offers from around the world.
+                        </p>
+                        
+                        <form class="newsletter-form mb-4">
+                            <div class="row g-3">
+                                <div class="col">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-light btn-lg fw-semibold">Subscribe</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="d-flex gap-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                <span>Multilingual support</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                <span>No spam guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <div class="app-download-card">
+                            <h3 class="h4 text-white mb-3">Download Our App</h3>
+                            <p class="text-white-75 mb-4">Shop on the go with our mobile app</p>
+                            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                                <a href="#" class="btn btn-outline-light">
+                                    📱 App Store
+                                </a>
+                                <a href="#" class="btn btn-outline-light">
+                                    📱 Google Play
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="logo-icon bg-gradient me-3">
+                            <i class="bi bi-bag-check text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="h4 mb-0">GlobalMart</h3>
+                            <small class="text-muted">Your Global Shopping Paradise</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-4">
+                        Connect with millions of buyers and sellers worldwide. Discover unique products, 
+                        competitive prices, and exceptional service across 200+ countries.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-globe text-primary me-2"></i>
+                            <span>200+ Countries</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-shield-check text-success me-2"></i>
+                            <span>Secure Payments</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="mb-3">Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/about" class="text-muted text-decoration-none">About Us</a></li>
+                        <li><a href="/contact" class="text-muted text-decoration-none">Contact</a></li>
+                        <li><a href="/careers" class="text-muted text-decoration-none">Careers</a></li>
+                        <li><a href="/press" class="text-muted text-decoration-none">Press</a></li>
+                        <li><a href="/investor" class="text-muted text-decoration-none">Investor Relations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="mb-3">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/help" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li><a href="/returns" class="text-muted text-decoration-none">Returns</a></li>
+                        <li><a href="/shipping" class="text-muted text-decoration-none">Shipping Info</a></li>
+                        <li><a href="/track" class="text-muted text-decoration-none">Track Order</a></li>
+                        <li><a href="/disputes" class="text-muted text-decoration-none">Dispute Resolution</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="mb-3">Selling</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/seller/register" class="text-muted text-decoration-none">Become a Seller</a></li>
+                        <li><a href="/seller/guide" class="text-muted text-decoration-none">Seller Guide</a></li>
+                        <li><a href="/seller/fees" class="text-muted text-decoration-none">Fees & Pricing</a></li>
+                        <li><a href="/seller/protection" class="text-muted text-decoration-none">Seller Protection</a></li>
+                        <li><a href="/affiliate" class="text-muted text-decoration-none">Affiliate Program</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="mb-3">Follow Us</h5>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-truck text-primary me-2"></i>
+                        <span>Free Global Shipping</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-shield-check text-success me-2"></i>
+                        <span>Buyer Protection</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-chat-dots text-purple me-2"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-award text-warning me-2"></i>
+                        <span>Quality Guaranteed</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-link text-muted">🌐 English</button>
+                        <button class="btn btn-link text-muted">💱 USD</button>
+                        <button class="btn btn-link text-muted">📍 <span id="footer-location">United States</span></button>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-md-end">
+                        <a href="/privacy" class="text-muted text-decoration-none">Privacy Policy</a>
+                        <a href="/terms" class="text-muted text-decoration-none">Terms of Service</a>
+                        <a href="/cookies" class="text-muted text-decoration-none">Cookie Policy</a>
+                        <a href="/gdpr" class="text-muted text-decoration-none">GDPR</a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="text-center text-muted">
+                <p>&copy; 2024 GlobalMart. All rights reserved worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="btn btn-primary rounded-circle chat-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#chatCollapse">
+            <i class="bi bi-chat-dots"></i>
+        </button>
+        <div class="collapse" id="chatCollapse">
+            <div class="card chat-card">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="bi bi-headset me-2"></i>
+                        Live Support
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Hi! How can we help you today?</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary btn-sm">Track my order</button>
+                        <button class="btn btn-outline-primary btn-sm">Product inquiry</button>
+                        <button class="btn btn-outline-primary btn-sm">Return/Refund</button>
+                        <button class="btn btn-outline-primary btn-sm">Other questions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+</body>
+</html>
