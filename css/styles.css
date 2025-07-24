@@ -89,10 +89,10 @@ body {
 
 .search-input {
     border: 2px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 15px 20px;
-    font-size: 1.1rem;
-    height: 50px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    height: 40px;
 }
 
 .search-input:focus {
@@ -101,9 +101,14 @@ body {
 }
 
 .search-form .btn {
-    height: 50px;
-    padding: 0 20px;
-    font-size: 1.1rem;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 1rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.search-form .btn i {
+    font-size: 0.9rem;
 }
 
 /* Search Dropdown Fix */
