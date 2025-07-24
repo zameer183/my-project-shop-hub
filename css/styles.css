@@ -19,10 +19,12 @@
     --border-radius: 0.5rem;
 }
 
-/* Typography */
+/* Typography - Desktop First */
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
+    font-size: 16px;
+    min-width: 1200px; /* Ensure minimum desktop width */
 }
 
 .font-poppins {
@@ -32,46 +34,62 @@ body {
 /* Custom Bootstrap Color Classes */
 .text-purple { color: var(--purple-color) !important; }
 .bg-purple { background-color: var(--purple-color) !important; }
-.btn-purple { 
-    color: white; 
-    background-color: var(--purple-color); 
-    border-color: var(--purple-color); 
+.btn-purple {
+    color: white;
+    background-color: var(--purple-color);
+    border-color: var(--purple-color);
 }
-.btn-purple:hover { 
-    background-color: #7c3aed; 
-    border-color: #7c3aed; 
+.btn-purple:hover {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
 }
 
 .bg-purple-subtle { background-color: rgba(139, 92, 246, 0.1) !important; }
 .text-white-50 { color: rgba(255, 255, 255, 0.5) !important; }
 .text-white-75 { color: rgba(255, 255, 255, 0.75) !important; }
 
-/* Header Styles */
+/* Header Styles - Desktop */
 .top-bar {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
+    padding: 8px 0;
 }
 
 .header-main {
     box-shadow: var(--shadow);
     z-index: 1030;
+    padding: 15px 0;
+}
+
+.header-main .container {
+    max-width: 1400px;
 }
 
 .logo-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
     background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+}
+
+.header-main h1 {
+    font-size: 1.5rem !important;
+}
+
+.header-main .row {
+    align-items: center;
+    padding: 20px 0;
 }
 
 .search-input {
     border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 1rem;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    height: 50px;
 }
 
 .search-input:focus {
@@ -79,13 +97,31 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
 }
 
+.search-form .btn {
+    height: 50px;
+    padding: 0 20px;
+    font-size: 1.1rem;
+}
+
+/* Desktop Navigation */
+.navbar-nav {
+    padding: 15px 0;
+}
+
+.nav-link {
+    padding: 12px 25px !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
 /* Mega Menu Styles */
 .mega-dropdown .dropdown-menu {
-    width: 400px;
+    width: 500px;
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: var(--shadow-lg);
-    padding: 1rem;
+    padding: 2rem;
+    margin-top: 10px;
 }
 
 .mega-menu .dropdown-item {
@@ -99,13 +135,35 @@ body {
     color: var(--primary-color);
 }
 
-/* Hero Section */
+/* Hero Section - Desktop */
 .hero-section {
     background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
     position: relative;
-    min-height: 500px;
+    min-height: 650px;
     display: flex;
     align-items: center;
+    padding: 80px 0;
+}
+
+.hero-section .container {
+    max-width: 1400px;
+}
+
+.hero-section h1 {
+    font-size: 4rem !important;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-section .lead {
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+}
+
+.hero-section .btn-lg {
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    margin-right: 20px;
 }
 
 .hero-overlay {
@@ -139,21 +197,22 @@ body {
     min-height: 75vh;
 }
 
-/* Banner Carousel */
+/* Banner Carousel - Desktop */
 .banner-carousel {
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    margin: 60px 0;
 }
 
 .banner-slide {
     position: relative;
-    height: 500px;
+    height: 600px;
     overflow: hidden;
 }
 
 .banner-slide img {
-    height: 500px;
+    height: 600px;
     object-fit: cover;
 }
 
@@ -172,15 +231,42 @@ body {
 .books-banner { background: linear-gradient(135deg, #f59e0b, #ef4444); }
 .iphone-banner { background: linear-gradient(135deg, #64748b, #1e293b); }
 
+/* Desktop Sections */
+.py-5 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+.container {
+    max-width: 1400px;
+}
+
+.display-5 {
+    font-size: 3rem !important;
+}
+
+.display-6 {
+    font-size: 2.5rem !important;
+}
+
+.lead {
+    font-size: 1.3rem;
+}
+
 /* Feature Cards */
 .feature-card {
     transition: all 0.3s ease;
-    border-radius: 12px;
+    border-radius: 16px;
+    padding: 2rem;
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
+}
+
+.feature-card .card-body {
+    padding: 2.5rem !important;
 }
 
 .feature-icon {
@@ -439,12 +525,57 @@ body {
     border-radius: var(--border-radius);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Desktop First - Override Bootstrap responsive behavior */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .row > * {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-section {
+        min-height: 700px;
+    }
+
+    .banner-slide {
+        height: 650px;
+    }
+
+    .banner-slide img {
+        height: 650px;
+    }
+
+    .carousel-caption {
+        left: 10%;
+        width: 45%;
+    }
+
+    .carousel-caption h2 {
+        font-size: 3.5rem;
+    }
+
+    .carousel-caption .h4 {
+        font-size: 2rem;
+    }
+
+    .carousel-caption .lead {
+        font-size: 1.3rem;
+    }
+}
+
+/* Responsive adjustments - Only for smaller screens */
+@media (max-width: 1199px) {
+    body {
+        min-width: auto;
+    }
+
     .hero-section {
         min-height: 400px;
     }
-    
+
     .carousel-caption {
         position: absolute;
         top: 50%;
@@ -453,19 +584,19 @@ body {
         width: 90%;
         text-align: center;
     }
-    
+
     .display-3 {
         font-size: 2rem;
     }
-    
+
     .display-4 {
         font-size: 1.5rem;
     }
-    
+
     .banner-slide {
         height: 300px;
     }
-    
+
     .banner-slide img {
         height: 300px;
     }
@@ -475,20 +606,20 @@ body {
     .top-bar {
         font-size: 0.75rem;
     }
-    
+
     .top-bar .d-flex {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .hero-section {
         min-height: 350px;
     }
-    
+
     .carousel-caption h2 {
         font-size: 1.25rem;
     }
-    
+
     .carousel-caption p {
         font-size: 0.9rem;
     }
