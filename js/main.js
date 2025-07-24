@@ -528,10 +528,12 @@ function initializeCurrencySelector() {
             // Update global currency
             AppState.currency = currency;
 
-            // Update the button
+            // Find and update the currency button
             const currencyBtns = document.querySelectorAll('.dropdown-toggle');
             currencyBtns.forEach(btn => {
-                if (btn.textContent.trim() === '$' || btn.textContent.includes('$')) {
+                const btnText = btn.textContent.trim();
+                // Check if this is the currency button (contains currency symbol)
+                if (btnText === '$' || btnText === '€' || btnText === '£' || btnText === '₨') {
                     btn.innerHTML = symbol + ' <i class="bi bi-chevron-down ms-1"></i>';
                 }
             });
