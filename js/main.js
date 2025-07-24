@@ -599,6 +599,13 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartUI();
     updateWishlistUI();
 
+    // Initialize authentication state
+    checkAuthState();
+
+    // Initialize selectors
+    initializeLanguageSelector();
+    initializeCurrencySelector();
+
     // Add smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
