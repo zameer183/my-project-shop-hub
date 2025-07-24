@@ -35,16 +35,34 @@ class SearchManager {
         const searchInput = document.querySelector('.search-input');
         if (!searchInput) return;
 
+        // Remove existing dropdown if any
+        const existingDropdown = document.querySelector('.search-dropdown');
+        if (existingDropdown) {
+            existingDropdown.remove();
+        }
+
         // Create dropdown element
         const dropdown = document.createElement('div');
-        dropdown.className = 'search-dropdown position-absolute bg-white border rounded shadow-lg d-none';
-        dropdown.style.cssText = 'top: calc(100% + 2px); left: 0; right: 0; z-index: 1041; max-height: 300px; overflow-y: auto; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);';
+        dropdown.className = 'search-dropdown d-none';
+        dropdown.style.cssText = `
+            position: absolute !important;
+            top: calc(100% + 5px) !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 9999 !important;
+            background: white !important;
+            border: 1px solid #e5e7eb !important;
+            border-radius: 8px !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+            max-height: 300px !important;
+            overflow-y: auto !important;
+        `;
 
         // Ensure parent has proper positioning
         const searchForm = searchInput.closest('.search-form');
         if (searchForm) {
             searchForm.style.position = 'relative';
-            searchForm.style.zIndex = '1040';
+            searchForm.style.zIndex = '1005';
             searchForm.appendChild(dropdown);
         }
 
